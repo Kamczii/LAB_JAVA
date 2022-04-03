@@ -7,18 +7,17 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tower {
+public class Brewery {
 
-    public Tower(String name, int height) {
+    public Brewery(String name, int value) {
         this.name = name;
-        this.height = height;
-        this.mages = new ArrayList<>();
+        this.value = value;
+        this.beers = new ArrayList<>();
     }
 
     @Id
@@ -27,19 +26,19 @@ public class Tower {
 
     @Getter
     @Setter
-    private int height;
+    private int value;
 
-    @OneToMany(mappedBy = "tower", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brewery", fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private List<Mage> mages;
+    private List<Beer> beers;
 
     @Override
     public String toString() {
-        return "\nTower{" +
+        return "\nBrewary = {" +
                 "name='" + name + '\'' +
-                ", height=" + height +
-                ", \nmages=" + mages +
+                ", value=" + value +
+                ", \nbeers=" + beers +
                 "}\n";
     }
 }

@@ -7,26 +7,26 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mage {
+public class Beer {
     @Id
     @Getter
     private String name;
 
     @Getter
     @Setter
-    private int level;
+    private int price;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tower")
+    @JoinColumn(name = "brewery")
     @Getter
     @Setter
-    private Tower tower;
+    private Brewery brewery;
 
     @Override
     public String toString() {
-        return "Mage{" +
+        return "Beer = {" +
                 "name='" + name + '\'' +
-                ", level=" + level +
+                ", price=" + price +
                 '}';
     }
 }
