@@ -28,7 +28,7 @@ public class Brewery {
     @Setter
     private int value;
 
-    @OneToMany(mappedBy = "brewery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brewery", fetch = FetchType.EAGER,orphanRemoval=true)
     @Getter
     @Setter
     private List<Beer> beers;

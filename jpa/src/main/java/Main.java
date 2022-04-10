@@ -1,11 +1,10 @@
-import repositories.MageRepository;
-import repositories.TowerRepository;
+import repositories.BeerRepository;
+import repositories.BreweryRepository;
 import services.InitService;
-import services.MageService;
-import services.TowerService;
-import views.MagesView;
-import views.SIGN;
-import views.TowersView;
+import services.BeerService;
+import services.BreweryService;
+import views.BeerView;
+import views.BreweryView;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,22 +14,22 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("mags");
 
-        MageService magsService = new MageService(new MageRepository(entityManagerFactory));
-        TowerService towerService = new TowerService(new TowerRepository(entityManagerFactory));
-        InitService initService = new InitService(magsService, towerService);
+        BeerService magsService = new BeerService(new BeerRepository(entityManagerFactory));
+        BreweryService breweryService = new BreweryService(new BreweryRepository(entityManagerFactory));
+        InitService initService = new InitService(magsService, breweryService);
         initService.init();
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
 
         while (running) {
-            System.out.println("Komenda: ");
+            System.out.println("Piwko czy browar: ");
             switch (scanner.nextLine()) {
-                case "towers":
-                    new TowersView(towerService).display();
+                case "browar":
+                    new BreweryView(breweryService).display();
                     break;
-                case "mages":
-                    new MagesView(magsService, towerService).display();
+                case "piwko":
+                    new BeerView(magsService, breweryService).display();
                     break;
             }
         }

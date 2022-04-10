@@ -27,6 +27,7 @@ public class Beer {
         return "Beer = {" +
                 "name='" + name + '\'' +
                 ", price=" + price +
+                ", brewery="+brewery.getName()+
                 '}';
     }
 }

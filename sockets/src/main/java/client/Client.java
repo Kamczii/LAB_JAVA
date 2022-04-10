@@ -5,6 +5,7 @@ import common.Message;
 
 import java.io.*;
 import java.net.*;
+import java.util.Random;
 
 public class Client {
 
@@ -19,12 +20,20 @@ public class Client {
                     if (!response.equals(CONSTANTS.READY)) {
                         return CONSTANTS.ERROR;
                     }
+
                     objectOutputStream.writeObject(n);
 
                     response = (String)objectInputStream.readObject();
                     if (!response.equals(CONSTANTS.READY_FOR_MESSAGES)) {
                         return CONSTANTS.ERROR;
                     }
+
+                    Random rand = new Random();
+                    int[] tab = new int[10];
+                    for(int i=0;i<10;i++){
+                        tab[i] = rand.nextInt(n);
+                    }
+                    objectOutputStream.writeObject(tab);
 
                     for(int i=0;i<n;i++){
                         objectOutputStream.writeObject(new Message(i+1,"Wiadomość "+(i+1)));

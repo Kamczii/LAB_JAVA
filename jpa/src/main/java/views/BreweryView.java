@@ -20,6 +20,10 @@ public class BreweryView extends View{
         System.out.println("Wyświetl: ");
         System.out.println("a) wszystkie browary o wartości");
         System.out.println("b) konkretny browar");
+        System.out.println("c) usuń browar");
+        System.out.println("d) wszystkie browary");
+        System.out.println("e) dodaj browar");
+
         String option = scanner.nextLine();
 
         if(option.equalsIgnoreCase("a")) {
@@ -32,6 +36,20 @@ public class BreweryView extends View{
             String name = scanner.nextLine();
             Brewery brewery = breweryService.findById(name);
             System.out.println(brewery);
+        } else if (option.equalsIgnoreCase("c")) {
+            System.out.println("Nazwa browaru do usunięcia: ");
+            String name = scanner.nextLine();
+            Brewery brewery = breweryService.findById(name);
+            breweryService.delete(brewery);
+        } else if(option.equalsIgnoreCase("d")) {
+            System.out.println(breweryService.findAll());
+        } else if(option.equalsIgnoreCase("e")) {
+            System.out.println("Podaj nazwę browaru: ");
+            String breweryName = scanner.nextLine();
+            System.out.println("Podaj wartość: ");
+            int value = scanner.nextInt();
+            System.out.println("Dodawanie");
+            breweryService.create(breweryName,value);
         }
 
     }

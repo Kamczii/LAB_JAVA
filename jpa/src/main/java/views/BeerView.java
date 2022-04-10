@@ -21,10 +21,10 @@ public class BeerView extends View{
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("a)Pobierz piwa z danego browaru");
-        System.out.println("b)Pobierz wszystkie piwa");
+        System.out.println("b)Pobierz wszystkie piwa z ceną");
         System.out.println("c)Dodaj piwo");
         System.out.println("d)Usuń piwo");
-        System.out.println("e)Usuń browar");
+        System.out.println("e)Pobierz wszystkie piwa");
         String option = scanner.nextLine();
 
         if (option.equalsIgnoreCase("a")) {
@@ -56,11 +56,8 @@ public class BeerView extends View{
             String name = scanner.nextLine();
             Beer mage = beerService.findById(name);
             beerService.delete(mage);
-        } else if (option.equalsIgnoreCase("e")) {
-            System.out.println("Podaj nazwę browaru do usunięcia: ");
-            String name = scanner.nextLine();
-            Beer mage = beerService.findById(name);
-            beerService.delete(mage);
+        } else if(option.equalsIgnoreCase("e")) {
+            System.out.println(beerService.findAll());
         }
 
     }

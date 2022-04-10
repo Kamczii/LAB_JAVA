@@ -31,4 +31,12 @@ public class BreweryService {
     public Brewery findById(String towerName) {
         return this.breweryRepository.findById(towerName);
     }
+
+    public void delete(Brewery brewery) {
+        this.breweryRepository.delete(brewery);
+    }
+
+    public void create(String breweryName, int value) {
+        breweryRepository.add(new Brewery(breweryName, value, null));
+    }
 }

@@ -1,7 +1,5 @@
 package repositories;
 
-import entities.Tower;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -42,5 +40,14 @@ public abstract class JpaRepository<E,K> {
         E entity = entityManager.find(clazz,id);
         entityManager.close();
         return entity;
+    }
+
+    public void delete(E entity) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(em.merge(entity));
+        transaction.commit();
+        em.close();
     }
 }

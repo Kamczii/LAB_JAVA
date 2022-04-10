@@ -23,18 +23,22 @@ public class SocketConnectionHandler implements Runnable {
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream())) {
 
            objectOutputStream.writeObject(CONSTANTS.READY);
-
+            System.out.println(CONSTANTS.READY);
            int n = (Integer) objectInputStream.readObject();
 
            objectOutputStream.writeObject(CONSTANTS.READY_FOR_MESSAGES);
-
+           System.out.println(CONSTANTS.READY_FOR_MESSAGES);
+           int[] tab = (int[]) objectInputStream.readObject();
+           for (int i=0;i<10;i++){
+               System.out.println(tab[i]);
+           }
            for(int i=0;i<n;i++) {
                Message message = (Message) objectInputStream.readObject();
                System.out.println(message);
            }
 
             objectOutputStream.writeObject(CONSTANTS.FINISHED);
-
+            System.out.println(CONSTANTS.FINISHED);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
